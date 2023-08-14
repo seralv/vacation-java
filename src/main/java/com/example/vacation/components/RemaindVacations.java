@@ -23,16 +23,19 @@ public class RemaindVacations {
         LocalDate now = LocalDate.now();
         List<WorkInformation> workInformationList = workInformationRepository.findAllByState("working");
         workInformationList.forEach(workInformation -> {
-            Period periodo = Period.between(workInformation.getEntryDate(), now);
-            int yearsServices = periodo.getYears();
+            Period period = Period.between(workInformation.getEntryDate(), now);
+            int yearsServices = period.getYears();
 
             if (yearsServices < 1) {
                 workInformation.setRemainingDays(0);
-            } else if (yearsServices < 6) {
+            } else if (yearsServices < 6 && now.getDayOfMonth() == workInformation.getEntryDate().getDayOfMonth() &&
+                    now.getMonth() == workInformation.getEntryDate().getMonth()) {
                 workInformation.setRemainingDays(workInformation.getRemainingDays() + 15);
-            } else if (yearsServices < 11) {
+            } else if (yearsServices < 11 && now.getDayOfMonth() == workInformation.getEntryDate().getDayOfMonth() &&
+                    now.getMonth() == workInformation.getEntryDate().getMonth()) {
                 workInformation.setRemainingDays(workInformation.getRemainingDays() + 20);
-            } else {
+            } else if(now.getDayOfMonth() == workInformation.getEntryDate().getDayOfMonth() &&
+                    now.getMonth() == workInformation.getEntryDate().getMonth()) {
                 workInformation.setRemainingDays(workInformation.getRemainingDays() + 30);
             }
             workInformationRepository.save(workInformation);
