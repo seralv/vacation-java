@@ -18,7 +18,7 @@ public class RemaindVacations {
     @Autowired
     private WorkInformationRepository workInformationRepository;
 
-    @Scheduled(cron = "234")
+    @Scheduled(cron = "0 */1 * ? * *")
     public void reviewVacation() {
         LocalDate now = LocalDate.now();
         List<WorkInformation> workInformationList = workInformationRepository.findAllByState("working");
