@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 public class EmployeeDTO {
     private String name;
-    @JsonProperty("last_name")
+    @JsonProperty("lastName")
     private String lastName;
     private String address;
     private String phone;

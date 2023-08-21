@@ -21,7 +21,7 @@ public class WorkInformation {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @JsonFormat(pattern = "dd/MM/yyyy")
-    @JsonProperty("entry_date")
+    @JsonProperty("entryDate")
     private LocalDate entryDate;
     private int remainingDays;
     private String state;
