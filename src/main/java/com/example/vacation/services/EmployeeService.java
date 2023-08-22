@@ -58,6 +58,14 @@ public class EmployeeService {
 
         // Save the updated employee back to the database
         employeeRepository.save(existingEmployee);
+
+        // Update the related WorkInformation
+        WorkInformation workInformation = existingEmployee.getWorkInformation();
+        if (workInformation != null) {
+            workInformation.setEntryDate(updatedEmployeeDTO.getEntryDate());
+            // You might want to update other fields as well, depending on your requirements
+            workInformationRepository.save(workInformation);
+        }
     }
 
     public List<Employee> getAllEmployees() {
