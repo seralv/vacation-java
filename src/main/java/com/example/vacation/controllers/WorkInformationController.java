@@ -1,11 +1,11 @@
 package com.example.vacation.controllers;
 
+import com.example.vacation.DTO.EmployeeDTO;
+import com.example.vacation.DTO.WorkInformationDTO;
 import com.example.vacation.models.WorkInformation;
 import com.example.vacation.services.WorkInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +19,10 @@ public class WorkInformationController {
     @GetMapping
     public List<WorkInformation> getAllWorkInformation() {
         return workInformationService.getAllWorkInformation();
+    }
+
+    @PostMapping
+    public void createWorkInformation(@RequestBody WorkInformationDTO workInformationDTO) {
+        workInformationService.createWorkInformation(workInformationDTO);
     }
 }
